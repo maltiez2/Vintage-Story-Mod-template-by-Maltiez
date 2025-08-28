@@ -1,11 +1,11 @@
 <Project>
   <PropertyGroup>
-    <RunFormatter>false</RunFormatter>
-    <DataFolderName>VintagestoryData</DataFolderName>
+    <RunFormatter>true</RunFormatter>
+    <DataFolderName>VintagestoryDataDev</DataFolderName>
     <GameDirectory></GameDirectory>
     <PackageDevBuild>false</PackageDevBuild>
-    <EnterWorldOnStartup>false</EnterWorldOnStartup>
+    <EnterWorldOnStartup>true</EnterWorldOnStartup>
     <JsonIndent>2</JsonIndent>
-    <JsonMaxLineLength>200</JsonMaxLineLength>
+    <JsonMaxLineLength>230</JsonMaxLineLength>
   </PropertyGroup>
 </Project>
