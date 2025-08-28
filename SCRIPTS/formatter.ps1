@@ -112,7 +112,6 @@ if (Test-Path $Path -PathType Container) {
 } elseif (Test-Path $Path -PathType Leaf) {
     $files = @(Get-Item $Path)
 } else {
-    Write-Error "Path not found: $Path"
     exit 0
 }
 

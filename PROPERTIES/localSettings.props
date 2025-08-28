@@ -5,7 +5,5 @@
     <GameDirectory></GameDirectory>
     <PackageDevBuild>false</PackageDevBuild>
     <EnterWorldOnStartup>true</EnterWorldOnStartup>
-    <JsonIndent>2</JsonIndent>
-    <JsonMaxLineLength>230</JsonMaxLineLength>
   </PropertyGroup>
 </Project>

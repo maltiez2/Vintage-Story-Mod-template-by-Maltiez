@@ -27,6 +27,8 @@
     <Nullable>enable</Nullable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <ImplicitUsings>enable</ImplicitUsings>
+    <JsonIndent>2</JsonIndent>
+    <JsonMaxLineLength>200</JsonMaxLineLength>
   </PropertyGroup>
 
   <!-- Loading local settings file -->
@@ -56,6 +58,11 @@
     <EnterWorldCommand Condition="'$(EnterWorldOnStartup)' == 'true'">"-o" "$(WorldName)"</EnterWorldCommand>
   </PropertyGroup>
 
+  <!-- Project item includes -->
+  <ItemGroup>
+    <Folder Include="resources\assets\$projectname$" />
+  </ItemGroup>
+
   <!-- Formatting JSON files -->
   <PropertyGroup>
     <Scripts>$(ProjectDir)\scripts</Scripts>
@@ -71,16 +78,30 @@
 
   <!-- References to libraries that are being used in project -->
   <ItemGroup>
+    <!-- ImGui for debug tools (requires ImGui mod installed if you call ImGui methods) -->
     <PackageReference Include="VSImGui" Version="0.0.6" />
-    <Reference Include="$(GameDirectory)/**/*.dll" Private="false" Condition="'$(GameDirectory)' != ''" />
+    <!-- Vintage Story libraries -->
+    <Reference Include="VintagestoryLib" HintPath="$(GameDirectory)/VintagestoryLib.dll" Private="false"/>
+    <Reference Include="VintagestoryAPI" HintPath="$(GameDirectory)/VintagestoryAPI.dll" Private="false"/>
+    <Reference Include="VSSurvivalMod" HintPath="$(GameDirectory)/Mods/VSSurvivalMod.dll" Private="false"/>
+    <Reference Include="VSEssentials" HintPath="$(GameDirectory)/Mods/VSEssentials.dll" Private="false"/>
+    <Reference Include="VSCreativeMod" HintPath="$(GameDirectory)/Mods/VSCreativeMod.dll" Private="false"/>
+    <Reference Include="Newtonsoft.Json" HintPath="$(GameDirectory)/Lib/Newtonsoft.Json.dll" Private="false"/>
+    <Reference Include="0Harmony" HintPath="$(GameDirectory)/Lib/0Harmony.dll" Private="false"/>
+    <Reference Include="protobuf-net" HintPath="$(GameDirectory)/Lib/protobuf-net.dll" Private="false"/>
+    <Reference Include="cairo-sharp" HintPath="$(GameDirectory)/Lib/cairo-sharp.dll" Private="false"/>
+    <Reference Include="JsonDiffPatch" HintPath="$(GameDirectory)/Lib/JsonDiffPatch.dll" Private="false"/>
+    <Reference Include="cairo-sharp" HintPath="$(GameDirectory)/Lib/cairo-sharp.dll" Private="false"/>
+    <Reference Include="Tavis.JsonPatch" HintPath="$(GameDirectory)/Lib/Tavis.JsonPatch.dll" Private="false"/>
+    <Reference Include="$(GameDirectory)/Lib/OpenTK*.dll" Private="false"/>
+    <!-- External libraries -->
     <Reference Include="$(ExternalLibDir)/**/*.dll" Private="false" Condition="'$(ExternalLibDir)' != ''" />
-    <Folder Include="resources\assets\$projectname$" />
   </ItemGroup>
 
   <!-- Creating local settings file -->
   <Target Name="EnsureSettingsJson" BeforeTargets="ModInfo" Condition="!Exists('Properties\localSettings.props')">
     <MakeDir Directories="Properties" />
-    <WriteLinesToFile File="Properties\localSettings.props" Overwrite="true" Lines="&lt;Project&gt;&#xD;&#xA;  &lt;PropertyGroup&gt;&#xD;&#xA;    &lt;RunFormatter&gt;false&lt;/RunFormatter&gt;&#xD;&#xA;    &lt;DataFolderName&gt;VintagestoryData&lt;/DataFolderName&gt;&#xD;&#xA;    &lt;GameDirectory&gt;&lt;/GameDirectory&gt;&#xD;&#xA;    &lt;PackageDevBuild&gt;false&lt;/PackageDevBuild&gt;&#xD;&#xA;    &lt;EnterWorldOnStartup&gt;false&lt;/EnterWorldOnStartup&gt;&#xD;&#xA;    &lt;JsonIndent&gt;2&lt;/JsonIndent&gt;&#xD;&#xA;    &lt;JsonMaxLineLength&gt;200&lt;/JsonMaxLineLength&gt;&#xD;&#xA;  &lt;/PropertyGroup&gt;&#xD;&#xA;&lt;/Project&gt;" />
+    <WriteLinesToFile File="Properties\localSettings.props" Overwrite="true" Lines="&lt;Project&gt;&#xD;&#xA;  &lt;PropertyGroup&gt;&#xD;&#xA;    &lt;RunFormatter&gt;false&lt;/RunFormatter&gt;&#xD;&#xA;    &lt;DataFolderName&gt;VintagestoryData&lt;/DataFolderName&gt;&#xD;&#xA;    &lt;GameDirectory&gt;&lt;/GameDirectory&gt;&#xD;&#xA;    &lt;PackageDevBuild&gt;false&lt;/PackageDevBuild&gt;&#xD;&#xA;    &lt;EnterWorldOnStartup&gt;false&lt;/EnterWorldOnStartup&gt;&#xD;&#xA;    &lt;/PropertyGroup&gt;&#xD;&#xA;&lt;/Project&gt;" />
     <Error Text="Local settings file was missing, generated a new one. Run build again." />
   </Target>
 
