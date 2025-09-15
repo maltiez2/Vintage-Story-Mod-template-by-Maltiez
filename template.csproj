@@ -159,6 +159,7 @@
     <Message Text="Pachaging into '$(ReleaseFile)'" Importance="high" />
     <Delete Files="$(OutputPath)\$(ModId).dll" Condition="'$(ModType)' != 'code'"/>
     <Delete Files="$(OutputPath)\$(ModId).pdb" Condition="'$(ModType)' != 'code'"/>
+    <Delete Files="$(OutputPath)\$(ModId).deps.json" Condition="'$(ModType)' != 'code'" />
     <MakeDir Directories="$(ReleasesDir)" />
     <Delete Files="$(ReleasePath)" />
     <ZipDirectory SourceDirectory="$(OutputPath)" DestinationFile="$(ReleasePath)" />
@@ -167,6 +168,7 @@
     <Message Text="Pachaging into '$(ReleaseFile)'" Importance="high" />
     <Delete Files="$(OutputPath)\$(ModId).dll" Condition="'$(ModType)' != 'code'"/>
     <Delete Files="$(OutputPath)\$(ModId).pdb" Condition="'$(ModType)' != 'code'"/>
+    <Delete Files="$(OutputPath)\$(ModId).deps.json" Condition="'$(ModType)' != 'code'" />
     <MakeDir Directories="$(ReleasesDir)" />
     <Delete Files="$(ReleasePathDev)" />
     <ZipDirectory SourceDirectory="$(OutputPath)" DestinationFile="$(ReleasePathDev)" />
