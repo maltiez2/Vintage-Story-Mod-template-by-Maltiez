@@ -1,1 +1,3 @@
-# Vintage Story Mod template by Maltiez
+# Vintage Story Mod template by Captanredbeard
+
+I'll eventually add a readme

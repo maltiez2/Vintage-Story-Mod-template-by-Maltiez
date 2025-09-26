@@ -1,6 +1,6 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>Vintage Story Mod template by Maltiez</Name>
+    <Name>Vintage Story Mod template by Redbeard</Name>
     <Description>Template for code mod for game Vintage Story.</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>

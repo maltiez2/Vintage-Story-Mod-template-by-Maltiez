@@ -37,7 +37,7 @@
   <!-- Paths -->
   <PropertyGroup>
     <ProjectDir>$(MSBuildProjectDirectory)</ProjectDir>
-    <OutputDir>bin\$(Configuration)\Mods</OutputDir>
+    <OutputDir>$(SolutionDir)bin\$(Configuration)\Mods</OutputDir>
     <OutputPath>$(OutputDir)\$(ModId)</OutputPath>
     <AssetsDir>$(ProjectDir)\resources\assets</AssetsDir>
     <ModIconFile>$(ProjectDir)\resources\modicon.png</ModIconFile>
@@ -54,7 +54,7 @@
     <DataFolder>$(AppData)\$(DataFolderName)</DataFolder>
     <AditionalModsFolder>$(AppData)\$(DataFolderName)\Mods</AditionalModsFolder>
     <WorldName>test_$(ModId)</WorldName>
-    <ModDir>$(ProjectDir)\$(OutputDir)</ModDir>
+    <ModDir>$(OutputDir)</ModDir>
     <EnterWorldCommand Condition="'$(EnterWorldOnStartup)' == 'true'">"-o" "$(WorldName)"</EnterWorldCommand>
   </PropertyGroup>
 
@@ -134,7 +134,7 @@
 }
       </ModInfo>
     </PropertyGroup>
-    <RemoveDir Directories="$(OutputDir)" />
+    <RemoveDir Directories="$(OutputPath)" />
     <Message Text="Generating modinfo.json" Importance="high" />
     <WriteLinesToFile File="$(OutputPath)/modinfo.json" Lines="$(ModInfo)" Overwrite="true" WriteOnlyWhenDifferent="true" />
   </Target>
