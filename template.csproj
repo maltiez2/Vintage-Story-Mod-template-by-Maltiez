@@ -37,7 +37,7 @@
   <!-- Paths -->
   <PropertyGroup>
     <ProjectDir>$(MSBuildProjectDirectory)</ProjectDir>
-    <OutputDir>bin\$(Configuration)\Mods</OutputDir>
+    <OutputDir>$(ProjectDir)\bin\$(Configuration)\Mods</OutputDir>
     <OutputPath>$(OutputDir)\$(ModId)</OutputPath>
     <AssetsDir>$(ProjectDir)\resources\assets</AssetsDir>
     <ModIconFile>$(ProjectDir)\resources\modicon.png</ModIconFile>
@@ -54,7 +54,7 @@
     <DataFolder>$(AppData)\$(DataFolderName)</DataFolder>
     <AditionalModsFolder>$(AppData)\$(DataFolderName)\Mods</AditionalModsFolder>
     <WorldName>test_$(ModId)</WorldName>
-    <ModDir>$(ProjectDir)\$(OutputDir)</ModDir>
+    <ModDir>$(OutputDir)</ModDir>
     <EnterWorldCommand Condition="'$(EnterWorldOnStartup)' == 'true'">"-o" "$(WorldName)"</EnterWorldCommand>
   </PropertyGroup>
 
@@ -156,7 +156,7 @@
 
   <!-- Archives output directory into zip and puts it into Releases folder -->
   <Target Name="ZipFiles" AfterTargets="Build" Condition=" '$(Configuration)' == 'Release' ">
-    <Message Text="Pachaging into '$(ReleaseFile)'" Importance="high" />
+    <Message Text="Packaging into '$(ReleaseFile)'" Importance="high" />
     <Delete Files="$(OutputPath)\$(ModId).dll" Condition="'$(ModType)' != 'code'"/>
     <Delete Files="$(OutputPath)\$(ModId).pdb" Condition="'$(ModType)' != 'code'"/>
     <Delete Files="$(OutputPath)\$(ModId).deps.json" Condition="'$(ModType)' != 'code'" />
@@ -165,7 +165,7 @@
     <ZipDirectory SourceDirectory="$(OutputPath)" DestinationFile="$(ReleasePath)" />
   </Target>
   <Target Name="ZipFilesDev" AfterTargets="Build" Condition=" '$(Configuration)' == 'Debug' and '$(PackageDevBuild)' == 'true'">
-    <Message Text="Pachaging into '$(ReleaseFile)'" Importance="high" />
+    <Message Text="Packaging into '$(ReleaseFile)'" Importance="high" />
     <Delete Files="$(OutputPath)\$(ModId).dll" Condition="'$(ModType)' != 'code'"/>
     <Delete Files="$(OutputPath)\$(ModId).pdb" Condition="'$(ModType)' != 'code'"/>
     <Delete Files="$(OutputPath)\$(ModId).deps.json" Condition="'$(ModType)' != 'code'" />
